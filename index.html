@@ -11,34 +11,33 @@
             theme: {
                 extend: {
                     colors: {
-                        'peri-bg': '#F8F9FA',
-                        'peri-card': '#FFFFFF',
-                        'peri-primary': '#6C63FF', /* Indigo/Lilac */
-                        'peri-light': '#B3B0FF',
-                        'peri-dark': '#2B2553',
-                        'text-main': '#1F1D2B',
-                        'text-muted': '#656175',
+                        'burgundy': '#59171b',
+                        'burgundy-light': '#8a2b32',
+                        'peach': '#fed7b8',
+                        'peach-bg': '#fffaf6',
+                        'peach-hover': '#fce3cf',
+                        'text-main': '#2a0a0c',
+                        'text-muted': '#785356',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
-    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700;italic&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F9FA; /* peri-bg */
-            color: #1F1D2B;
+            background-color: #fffaf6; /* peach-bg */
+            color: #2a0a0c;
         }
 
-        h1, h2, h3, .font-display {
-            font-family: 'Outfit', sans-serif;
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
         }
 
         .fade-in {
@@ -52,354 +51,351 @@
             transform: translateY(0);
         }
 
-        /* Modern Frost Card Effect */
+        /* Elegant Card Effect */
         .luxury-card {
             background-color: #FFFFFF;
-            border: 1px solid rgba(108, 99, 255, 0.08);
-            box-shadow: 0 10px 40px rgba(43, 37, 83, 0.03);
+            border: 1px solid rgba(89, 23, 27, 0.08); /* Burgundy border */
+            box-shadow: 0 10px 30px rgba(89, 23, 27, 0.04);
             transition: all 0.4s ease;
             border-radius: 16px;
         }
         
         .luxury-card:hover {
-            border-color: rgba(108, 99, 255, 0.3);
-            box-shadow: 0 15px 50px rgba(108, 99, 255, 0.1);
-            transform: translateY(-4px);
+            border-color: rgba(89, 23, 27, 0.2);
+            box-shadow: 0 15px 40px rgba(89, 23, 27, 0.08);
+            transform: translateY(-3px);
         }
 
-        /* Efek gradasi teks Indigo */
-        .text-indigo-gradient {
-            background: linear-gradient(135deg, #6C63FF, #B3B0FF);
+        /* Gradasi Teks Burgundy ke Terang */
+        .text-gradient {
+            background: linear-gradient(135deg, #59171b, #9c333a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        /* Tombol Indigo */
-        .btn-indigo {
-            background: linear-gradient(135deg, #6C63FF 0%, #8982FF 100%);
-            color: #FFFFFF;
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.25);
+        /* Tombol Utama (Solid Burgundy dengan Teks Peach) */
+        .btn-primary {
+            background: linear-gradient(135deg, #59171b, #7d2026);
+            color: #fed7b8;
+            box-shadow: 0 6px 20px rgba(89, 23, 27, 0.25);
             transition: all 0.3s ease;
-            border-radius: 12px;
+            border-radius: 50px;
         }
-        .btn-indigo:hover {
-            background: linear-gradient(135deg, #5149D1 0%, #6C63FF 100%);
-            box-shadow: 0 10px 25px rgba(108, 99, 255, 0.35);
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #421114, #59171b);
+            box-shadow: 0 8px 25px rgba(89, 23, 27, 0.35);
             transform: translateY(-2px);
+            color: #ffffff;
         }
 
-        /* Tombol Outline Indigo */
-        .btn-outline-indigo {
+        /* Tombol Outline (Garis Burgundy, Hover Peach) */
+        .btn-outline {
             background: #FFFFFF;
-            border: 2px solid #6C63FF;
-            color: #6C63FF;
+            border: 1.5px solid #59171b;
+            color: #59171b;
             transition: all 0.3s ease;
-            border-radius: 12px;
+            border-radius: 50px;
         }
-        .btn-outline-indigo:hover {
-            background: rgba(108, 99, 255, 0.05);
-            color: #5149D1;
+        .btn-outline:hover {
+            background: #fed7b8;
+            border-color: #fed7b8;
+            color: #59171b;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.1);
+            box-shadow: 0 6px 20px rgba(254, 215, 184, 0.6);
         }
 
+        /* Modal Pop-up Styles */
         .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(31, 29, 43, 0.8);
-            backdrop-filter: blur(5px);
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(42, 10, 12, 0.6);
+            backdrop-filter: blur(6px);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.4s ease; z-index: 100;
         }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
         .modal-content {
-            background: #FFFFFF;
-            width: 90%;
-            max-width: 750px;
-            max-height: 90vh;
-            border-radius: 20px;
-            overflow-y: auto;
-            transform: translateY(30px) scale(0.95);
-            transition: all 0.4s ease;
-            box-shadow: 0 25px 50px -12px rgba(43, 37, 83, 0.25);
+            background-color: #fffaf6;
+            width: 90%; max-width: 700px; max-height: 85vh;
+            border-radius: 20px; overflow-y: auto;
+            transform: translateY(30px) scale(0.95); transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(89, 23, 27, 0.25);
+            border: 1px solid rgba(89, 23, 27, 0.1);
         }
-        .modal-overlay.active .modal-content {
-            transform: translateY(0) scale(1);
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        
+        /* Modal Scrollbar */
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: #fce3cf; border-radius: 8px; }
+        .modal-content::-webkit-scrollbar-thumb { background: #59171b; border-radius: 8px; }
+
+        .close-modal {
+            position: sticky; top: 15px; float: right; right: 15px;
+            width: 35px; height: 35px; border-radius: 50%;
+            background: #fce3cf; color: #59171b;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; transition: all 0.2s ease; z-index: 10;
         }
-        body.modal-open {
-            overflow: hidden;
-        }
+        .close-modal:hover { background: #59171b; color: #fed7b8; transform: rotate(90deg); }
     </style>
 </head>
-<body class="antialiased selection:bg-peri-light selection:text-peri-dark">
+<body class="antialiased selection:bg-peach selection:text-burgundy">
 
-    <!-- Efek Cahaya Latar Belakang Halus -->
+    <!-- Efek Cahaya Latar Belakang (Burgundy & Peach) -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-peri-light rounded-full mix-blend-multiply filter blur-[150px] opacity-30"></div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-peri-primary rounded-full mix-blend-multiply filter blur-[150px] opacity-15"></div>
+        <div class="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-peach rounded-full mix-blend-multiply filter blur-[120px] opacity-40"></div>
+        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-burgundy rounded-full mix-blend-multiply filter blur-[150px] opacity-10"></div>
     </div>
 
-    <!-- Navigasi -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/70 backdrop-blur-xl border-b border-peri-primary/10">
+    <!-- Navigasi Utama -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-burgundy/10 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-display font-bold text-peri-dark tracking-tight">Sabrina<span class="text-peri-primary">.</span></a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-wide text-text-main">
-                <a href="#tentang" class="hover:text-peri-primary transition-colors">Home</a>
-                <a href="#keahlian" class="hover:text-peri-primary transition-colors">Services</a>
-                <a href="#proyek" class="hover:text-peri-primary transition-colors">Projects</a>
-                <a href="#kredensial" class="hover:text-peri-primary transition-colors">Credentials</a>
-                <a href="#kontak" class="hover:text-peri-primary transition-colors">Contact</a>
+            <a href="#" class="text-2xl font-serif font-bold text-burgundy tracking-wide">Sabrina<span class="text-peach-hover">.</span></a>
+            
+            <div class="hidden md:flex items-center space-x-8 text-sm tracking-widest uppercase text-text-main font-medium">
+                <a href="#tentang" class="hover:text-burgundy transition-colors">Home</a>
+                <a href="#keahlian" class="hover:text-burgundy transition-colors">Services</a>
+                <a href="#proyek" class="hover:text-burgundy transition-colors">Projects</a>
                 
-                <!-- Tombol Unduh CV di Navbar -->
-                <a href="cv.pdf" target="_blank" class="px-5 py-2 btn-indigo text-white font-semibold rounded-lg flex items-center gap-2 hover:shadow-lg transition-all">
-                    <i class="fas fa-file-download"></i> Unduh CV
+                <!-- Tombol Download CV Khusus di Menu -->
+                <a href="CV_Sabrina_2026.pdf" download class="btn-primary px-6 py-2.5 flex items-center gap-2 text-xs font-bold tracking-widest">
+                    <i class="fas fa-file-download"></i> UNDUH CV
                 </a>
             </div>
-            <button class="md:hidden text-peri-primary">
-                <i class="fas fa-bars text-2xl"></i>
+            
+            <button class="md:hidden text-burgundy text-2xl">
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <section id="tentang" class="min-h-screen flex items-center pt-20">
-        <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col-reverse md:flex-row items-center gap-12">
+    <!-- Hero Section -->
+    <section id="tentang" class="min-h-screen flex items-center pt-24 pb-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-12">
             <div class="flex-1 text-center md:text-left fade-in">
-                <div class="inline-block px-4 py-1.5 rounded-full bg-peri-primary/10 border border-peri-primary/20 mb-6">
-                    <p class="text-peri-primary font-semibold tracking-widest uppercase text-xs">Portofolio Profesional</p>
+                <div class="inline-block px-4 py-1.5 bg-peach/50 border border-burgundy/10 text-burgundy rounded-full text-xs font-bold tracking-[0.2em] uppercase mb-6">
+                    Portofolio Profesional
                 </div>
-                <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight text-text-main">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-text-main">
                     Sabrina Khoirunnisa <br>
-                    <span class="text-indigo-gradient">Data & QC Analyst.</span>
+                    <span class="text-gradient italic font-serif">Data & QC Analyst.</span>
                 </h1>
                 <p class="text-lg md:text-xl text-text-muted mb-10 max-w-2xl leading-relaxed font-light">
-                    Lulusan S1 Teknik Informatika dengan spesialisasi dalam <span class="text-peri-primary font-medium">pengolahan data, Quality Control, dan administrasi</span>. Berkomitmen memberikan hasil kerja akurat dan operasional efisien.
+                    Lulusan Teknik Informatika dengan spesialisasi <span class="text-burgundy font-medium">pengolahan data, Machine Learning, dan Quality Control</span>. Berkomitmen mengubah data kompleks menjadi keputusan bisnis yang efisien.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <!-- Tombol CV di Mobile (muncul khusus di tampilan hp/tablet kecil) -->
-                    <a href="cv.pdf" target="_blank" class="md:hidden px-8 py-3.5 btn-indigo font-semibold text-center flex items-center justify-center gap-2">
-                        <i class="fas fa-file-download"></i> Unduh CV
-                    </a>
-                    <a href="#proyek" class="px-8 py-3.5 btn-indigo hidden md:inline-block font-semibold text-center">
+                <div class="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
+                    <a href="#proyek" class="px-8 py-3.5 btn-primary font-semibold text-center tracking-wide text-sm">
                         Eksplorasi Proyek
                     </a>
-                    <a href="#kontak" class="px-8 py-3.5 btn-outline-indigo font-semibold text-center">
-                        Hubungi Saya
+                    <!-- Tombol CV Mobile/Cadangan -->
+                    <a href="CV_Sabrina_2026.pdf" download class="px-8 py-3.5 btn-outline font-semibold text-center tracking-wide text-sm flex items-center justify-center gap-2">
+                        <i class="fas fa-arrow-down"></i> Unduh CV
                     </a>
                 </div>
             </div>
             
             <div class="flex-1 flex justify-center md:justify-end fade-in relative">
-                <div class="absolute inset-0 bg-peri-primary rounded-full filter blur-[70px] opacity-20 transform scale-110"></div>
-                <!-- Foto Profil dengan Frame Modern -->
-                <div class="relative w-64 h-64 md:w-[380px] md:h-[380px] p-2 bg-white rounded-3xl shadow-2xl border border-peri-primary/10 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                    <img src="Sabrina_-preview.png" alt="Foto Profil Saya" class="w-full h-full object-cover rounded-2xl">
+                <div class="absolute inset-0 bg-peach rounded-full filter blur-[70px] opacity-60 transform scale-110"></div>
+                <!-- Foto Profil Placeholder -->
+                <div class="relative w-72 h-72 md:w-[400px] md:h-[400px] p-2 bg-white rounded-3xl shadow-2xl border border-peach-hover rotate-3 hover:rotate-0 transition-transform duration-500">
+                    <img src="https://placehold.co/400x400/59171b/fed7b8?text=Foto+Profil" alt="Foto Profil Saya" class="w-full h-full object-cover rounded-2xl">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="keahlian" class="py-24 relative">
+    <!-- Keahlian -->
+    <section id="keahlian" class="py-24 bg-white/40 border-y border-burgundy/5 relative">
         <div class="max-w-6xl mx-auto px-6 fade-in">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-display font-bold text-peri-dark mb-4">Core Competencies</h2>
-                <p class="text-text-muted max-w-2xl mx-auto">Kombinasi keahlian analitis, ketelitian Quality Control, dan administrasi operasional.</p>
+                <h2 class="text-4xl font-serif text-burgundy mb-4 font-bold">Core Competencies.</h2>
+                <p class="text-text-muted max-w-2xl mx-auto font-light">Kombinasi keahlian analitik prediktif, ketelitian operasional, dan administrasi.</p>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-5 group">
-                    <div class="w-16 h-16 rounded-2xl bg-peri-primary/10 flex items-center justify-center group-hover:bg-peri-primary group-hover:-translate-y-1 transition-all duration-300">
-                        <i class="fab fa-python text-peri-primary group-hover:text-white text-2xl transition-colors"></i>
+                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-4 group hover:bg-peach/10">
+                    <div class="w-16 h-16 rounded-2xl bg-peach-bg flex items-center justify-center group-hover:bg-burgundy transition-colors duration-300 shadow-sm border border-peach-hover">
+                        <i class="fab fa-python text-burgundy text-2xl group-hover:text-peach"></i>
                     </div>
                     <div>
-                        <span class="font-display font-semibold text-peri-dark text-lg block mb-1">Data Science</span>
-                        <span class="text-xs text-text-muted">Python, Google Colab</span>
+                        <span class="block font-serif text-burgundy text-lg font-bold mb-1">Data Science</span>
+                        <span class="text-xs text-text-muted font-light">Python, Scikit-Learn</span>
                     </div>
                 </div>
                 
-                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-5 group">
-                    <div class="w-16 h-16 rounded-2xl bg-peri-primary/10 flex items-center justify-center group-hover:bg-peri-primary group-hover:-translate-y-1 transition-all duration-300">
-                        <i class="fas fa-search-plus text-peri-primary group-hover:text-white text-2xl transition-colors"></i>
+                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-4 group hover:bg-peach/10">
+                    <div class="w-16 h-16 rounded-2xl bg-peach-bg flex items-center justify-center group-hover:bg-burgundy transition-colors duration-300 shadow-sm border border-peach-hover">
+                        <i class="fas fa-chart-line text-burgundy text-2xl group-hover:text-peach"></i>
                     </div>
                     <div>
-                        <span class="font-display font-semibold text-peri-dark text-lg block mb-1">Quality Control</span>
-                        <span class="text-xs text-text-muted">Inspeksi & Evaluasi Cacat</span>
+                        <span class="block font-serif text-burgundy text-lg font-bold mb-1">Data Analyst</span>
+                        <span class="text-xs text-text-muted font-light">EDA, Visualisasi Data</span>
                     </div>
                 </div>
 
-                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-5 group">
-                    <div class="w-16 h-16 rounded-2xl bg-peri-primary/10 flex items-center justify-center group-hover:bg-peri-primary group-hover:-translate-y-1 transition-all duration-300">
-                        <i class="fas fa-database text-peri-primary group-hover:text-white text-2xl transition-colors"></i>
+                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-4 group hover:bg-peach/10">
+                    <div class="w-16 h-16 rounded-2xl bg-peach-bg flex items-center justify-center group-hover:bg-burgundy transition-colors duration-300 shadow-sm border border-peach-hover">
+                        <i class="fas fa-search-plus text-burgundy text-2xl group-hover:text-peach"></i>
                     </div>
                     <div>
-                        <span class="font-display font-semibold text-peri-dark text-lg block mb-1">Administration</span>
-                        <span class="text-xs text-text-muted">Data Entry, Rekapitulasi</span>
+                        <span class="block font-serif text-burgundy text-lg font-bold mb-1">Quality Control</span>
+                        <span class="text-xs text-text-muted font-light">Inspeksi Cacat Material</span>
                     </div>
                 </div>
 
-                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-5 group">
-                    <div class="w-16 h-16 rounded-2xl bg-peri-primary/10 flex items-center justify-center group-hover:bg-peri-primary group-hover:-translate-y-1 transition-all duration-300">
-                        <i class="fas fa-file-excel text-peri-primary group-hover:text-white text-2xl transition-colors"></i>
+                <div class="luxury-card p-8 text-center flex flex-col items-center justify-center gap-4 group hover:bg-peach/10">
+                    <div class="w-16 h-16 rounded-2xl bg-peach-bg flex items-center justify-center group-hover:bg-burgundy transition-colors duration-300 shadow-sm border border-peach-hover">
+                        <i class="fas fa-database text-burgundy text-2xl group-hover:text-peach"></i>
                     </div>
                     <div>
-                        <span class="font-display font-semibold text-peri-dark text-lg block mb-1">Office Tools</span>
-                        <span class="text-xs text-text-muted">Excel, Word, PowerPoint</span>
+                        <span class="block font-serif text-burgundy text-lg font-bold mb-1">Administration</span>
+                        <span class="text-xs text-text-muted font-light">Data Entry, Rekapitulasi</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="proyek" class="py-24 bg-white border-y border-peri-primary/10">
+    <!-- Experience & Projects -->
+    <section id="proyek" class="py-24">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-display font-bold text-peri-dark mb-20 text-center fade-in">Experience & Projects</h2>
+            <h2 class="text-4xl font-serif text-burgundy mb-20 text-center font-bold fade-in">Experience & Projects.</h2>
 
-            <div class="space-y-28">
+            <div class="space-y-24">
                 
                 <!-- Proyek 1: Prediksi Nilai Siswa -->
                 <div class="flex flex-col md:flex-row gap-12 items-center fade-in group">
-                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-2">
-                    <img src="https://placehold.co/800x600/F8F9FA/6C63FF?text=Gambar:+Scatter+Plot+Regresi" alt="Prediksi Nilai Siswa" class="w-full h-full object-cover rounded-xl">
-                    <div class="absolute inset-0 bg-peri-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
-                        <button onclick="openModal('modal-ml')" class="btn-indigo px-6 py-2.5 font-semibold flex items-center gap-2">
-                            <i class="fas fa-eye"></i> Lihat Detail
-                        </button>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 space-y-5">
-                        <div class="inline-block px-3 py-1 rounded-md bg-peri-primary/10 border border-peri-primary/20">
-                            <span class="text-xs font-bold tracking-widest text-peri-primary uppercase">Machine Learning</span>
+                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-3 border-2 border-peach/50">
+                        <!-- Ganti Tautan Placeholder Gambar di Bawah Ini -->
+                        <img src="https://placehold.co/800x600/59171b/fed7b8?text=Gambar:+Scatter+Plot+Regresi" alt="Proyek Prediksi" class="w-full h-full object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-burgundy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
+                            <!-- Tombol ini memicu Pop-up Laporan 1 -->
+                            <button onclick="openModal('modal-1')" class="btn-primary bg-white text-burgundy px-8 py-3 font-semibold tracking-wide flex items-center gap-2 hover:bg-peach">
+                                <i class="fas fa-book-open"></i> Lihat Detail
+                            </button>
                         </div>
-                        <h3 class="text-3xl font-display font-bold text-peri-dark">Prediksi Nilai Akhir Siswa (Multiple Linear Regression)</h3>
-                        <p class="text-text-muted leading-relaxed">
-                            Membangun model regresi linear dari 33 variabel untuk memprediksi nilai akhir G3. Mengaplikasikan One-Hot Encoding dan memvisualisasikan hubungan antar variabel akademik.
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <span class="text-xs font-bold tracking-[0.2em] text-burgundy bg-peach/40 px-3 py-1 rounded-full uppercase">Machine Learning</span>
+                        <h3 class="text-3xl font-serif text-burgundy font-bold leading-snug">Prediksi Nilai Akhir Siswa Menggunakan Multiple Linear Regression</h3>
+                        <p class="text-text-muted font-light leading-relaxed">
+                            Membangun model regresi dari 395 observasi untuk memprediksi nilai (G3). Mengubah 33 variabel awal menjadi 42 fitur melalui One-Hot Encoding untuk menemukan korelasi performa akademik.
                         </p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-peri-primary/10">
+                        <div class="grid grid-cols-2 gap-4 py-5 border-y border-burgundy/10">
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">R-Squared (R²)</p>
-                                <p class="text-2xl font-display font-bold text-text-main">72.41%</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Akurasi Model</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">R² 72.41%</p>
                             </div>
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">RMSE Score</p>
-                                <p class="text-2xl font-display font-bold text-text-main">2.38</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Tingkat Eror</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">RMSE 2.38</p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Python</span>
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Scikit-Learn</span>
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Linear Regression</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Scikit-Learn</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Python</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Pandas</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyek 2: Dampak AI Terhadap Konsumsi Energi -->
+                <!-- Proyek 2: Dampak AI -->
                 <div class="flex flex-col md:flex-row-reverse gap-12 items-center fade-in group">
-                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-2">
-                    <img src="https://placehold.co/800x600/F8F9FA/2B2553?text=Gambar:+Modern+Data+Center" alt="Data Center AI" class="w-full h-full object-cover rounded-xl">
-                    <div class="absolute inset-0 bg-peri-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
-                        <button onclick="openModal('modal-ai')" class="btn-indigo px-6 py-2.5 font-semibold flex items-center gap-2">
-                            <i class="fas fa-eye"></i> Lihat Detail
-                        </button>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 space-y-5">
-                        <div class="inline-block px-3 py-1 rounded-md bg-peri-primary/10 border border-peri-primary/20">
-                            <span class="text-xs font-bold tracking-widest text-peri-primary uppercase">Data Analysis</span>
+                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-3 border-2 border-peach/50">
+                        <!-- Ganti Tautan Placeholder Gambar di Bawah Ini -->
+                        <img src="https://placehold.co/800x600/59171b/fed7b8?text=Gambar:+Modern+Data+Center" alt="Proyek Data Center" class="w-full h-full object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-burgundy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
+                             <!-- Tombol ini memicu Pop-up Laporan 2 -->
+                             <button onclick="openModal('modal-2')" class="btn-primary bg-white text-burgundy px-8 py-3 font-semibold tracking-wide flex items-center gap-2 hover:bg-peach">
+                                <i class="fas fa-book-open"></i> Lihat Detail
+                            </button>
                         </div>
-                        <h3 class="text-3xl font-display font-bold text-peri-dark">Dampak AI Terhadap Konsumsi Energi Data Center</h3>
-                        <p class="text-text-muted leading-relaxed">
-                            Menganalisis tren konsumsi listrik IT (2020-2035) yang menyentuh 985 TWh, serta mengevaluasi efisiensi Power Usage Effectiveness (PUE) infrastruktur digital global.
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <span class="text-xs font-bold tracking-[0.2em] text-burgundy bg-peach/40 px-3 py-1 rounded-full uppercase">Data Analyst</span>
+                        <h3 class="text-3xl font-serif text-burgundy font-bold leading-snug">Dampak AI Terhadap Konsumsi Energi Data Center</h3>
+                        <p class="text-text-muted font-light leading-relaxed">
+                            Menganalisis tren 2020-2035 dari IEA untuk mengevaluasi pertumbuhan infrastruktur AI. Mengekstraksi data skenario masa depan untuk menemukan gap antara peningkatan efisiensi vs konsumsi absolut.
                         </p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-peri-primary/10">
+                        <div class="grid grid-cols-2 gap-4 py-5 border-y border-burgundy/10">
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">Data Scale</p>
-                                <p class="text-2xl font-display font-bold text-text-main">2020-2035</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Forecast 2030</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">733 TWh</p>
                             </div>
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">Key Metrics</p>
-                                <p class="text-2xl font-display font-bold text-text-main">PUE & Capacity</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Efisiensi PUE</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">Turun 8.5%</p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Python</span>
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Pandas</span>
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Scenario Planning</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Scenario Planning</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">EDA</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyek 3: Analisis Pengeluaran Energi Global (IEA) -->
+                <!-- Proyek 3: IEA Energi -->
                 <div class="flex flex-col md:flex-row gap-12 items-center fade-in group">
-                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-2">
-                    <img src="https://placehold.co/800x600/F8F9FA/6C63FF?text=Gambar:+Peta+Dunia+Data" alt="Proyek Analisis Energi" class="w-full h-full object-cover rounded-xl">
-                    <div class="absolute inset-0 bg-peri-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
-                        <button onclick="openModal('modal-iea')" class="btn-indigo px-6 py-2.5 font-semibold flex items-center gap-2">
-                            <i class="fas fa-eye"></i> Lihat Detail
-                        </button>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 space-y-5">
-                        <div class="inline-block px-3 py-1 rounded-md bg-peri-primary/10 border border-peri-primary/20">
-                            <span class="text-xs font-bold tracking-widest text-peri-primary uppercase">Macroeconomics</span>
+                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-3 border-2 border-peach/50">
+                        <!-- Ganti Tautan Placeholder Gambar di Bawah Ini -->
+                        <img src="https://placehold.co/800x600/59171b/fed7b8?text=Gambar:+Peta+Dunia" alt="Proyek IEA" class="w-full h-full object-cover rounded-xl">
+                        <div class="absolute inset-0 bg-burgundy/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
+                             <!-- Tombol ini memicu Pop-up Laporan 3 -->
+                             <button onclick="openModal('modal-3')" class="btn-primary bg-white text-burgundy px-8 py-3 font-semibold tracking-wide flex items-center gap-2 hover:bg-peach">
+                                <i class="fas fa-book-open"></i> Lihat Detail
+                            </button>
                         </div>
-                        <h3 class="text-3xl font-display font-bold text-peri-dark">Analisis Pengeluaran Energi Rumah Tangga (IEA)</h3>
-                        <p class="text-text-muted leading-relaxed">
-                            Menganalisis dataset IEA untuk membedah disparitas beban finansial antar kelompok ekonomi dan dinamika transisi energi di lebih dari 100 negara.
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <span class="text-xs font-bold tracking-[0.2em] text-burgundy bg-peach/40 px-3 py-1 rounded-full uppercase">Macro Data</span>
+                        <h3 class="text-3xl font-serif text-burgundy font-bold leading-snug">Analisis Pengeluaran Energi Global (IEA)</h3>
+                        <p class="text-text-muted font-light leading-relaxed">
+                            Menganalisis dataset komprehensif dari International Energy Agency untuk membedah pola konsumsi energi di lebih dari 100 negara dan memetakan fase transisinya.
                         </p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-peri-primary/10">
+                        <div class="grid grid-cols-2 gap-4 py-5 border-y border-burgundy/10">
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">Scale</p>
-                                <p class="text-2xl font-display font-bold text-text-main">100+ Negara</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Scale</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">100+ Negara</p>
                             </div>
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">Key Insight</p>
-                                <p class="text-2xl font-display font-bold text-text-main">Affordability</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Key Insight</p>
+                                <p class="text-xl font-serif text-text-main font-bold">Affordability Paradox</p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Data Wrangling</span>
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">ETL Process</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Macroeconomics</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Python</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Proyek 4: Pengalaman Kerja QC -->
+                <!-- Pengalaman Kerja QC -->
                 <div class="flex flex-col md:flex-row-reverse gap-12 items-center fade-in group">
-                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-2">
-                        <img src="https://placehold.co/800x600/F8F9FA/B3B0FF?text=Gambar:+Inspeksi+QC+atau+Clipboard" alt="Pencapaian Kerja" class="w-full h-full object-cover rounded-xl">
-                        <div class="absolute inset-0 bg-peri-dark/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-sm rounded-2xl">
-                            <a href="#" class="btn-indigo px-6 py-2.5 font-semibold">Baca Detail</a>
-                        </div>
+                    <div class="w-full md:w-1/2 relative rounded-2xl overflow-hidden luxury-card aspect-[4/3] p-3 border-2 border-peach/50">
+                        <!-- Ganti Tautan Placeholder Gambar di Bawah Ini -->
+                        <img src="https://placehold.co/800x600/59171b/fed7b8?text=Gambar:+Quality+Control" alt="Pengalaman QC" class="w-full h-full object-cover rounded-xl">
                     </div>
-                    <div class="w-full md:w-1/2 space-y-5">
-                        <div class="inline-block px-3 py-1 rounded-md bg-peri-primary/10 border border-peri-primary/20">
-                            <span class="text-xs font-bold tracking-widest text-peri-primary uppercase">Professional Exp.</span>
-                        </div>
-                        <h3 class="text-3xl font-display font-bold text-peri-dark">Optimasi Quality Control & Akurasi Data</h3>
-                        <p class="text-text-muted leading-relaxed">
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <span class="text-xs font-bold tracking-[0.2em] text-burgundy bg-peach/40 px-3 py-1 rounded-full uppercase">Professional Experience</span>
+                        <h3 class="text-3xl font-serif text-burgundy font-bold leading-snug">Quality Control & Administrasi Data</h3>
+                        <p class="text-text-muted font-light leading-relaxed">
                             Mengevaluasi detail kualitas material di PT HUI SHUN dan melakukan rekapitulasi data sistem berstruktur tinggi di STMIK IKMI Cirebon.
                         </p>
-                        <div class="grid grid-cols-2 gap-4 py-4 border-y border-peri-primary/10">
+                        <div class="grid grid-cols-2 gap-4 py-5 border-y border-burgundy/10">
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">QC Impact</p>
-                                <p class="text-2xl font-display font-bold text-text-main">-18% Defect</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">QC Impact</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">-18% Defect</p>
                             </div>
                             <div>
-                                <p class="text-xs font-semibold text-peri-primary uppercase mb-1">Data Accuracy</p>
-                                <p class="text-2xl font-display font-bold text-text-main">99% Validasi</p>
+                                <p class="text-xs tracking-wider text-burgundy uppercase mb-1 font-semibold">Data Accuracy</p>
+                                <p class="text-2xl font-serif text-text-main font-bold">99% Validasi</p>
                             </div>
                         </div>
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Quality Control</span>
-                            <span class="text-xs font-medium text-peri-dark bg-peri-bg border border-peri-primary/20 px-3 py-1.5 rounded-lg">Data Entry</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Quality Control</span>
+                            <span class="text-xs font-medium text-burgundy bg-white border border-burgundy/20 px-3 py-1.5 rounded-md">Data Entry</span>
                         </div>
                     </div>
                 </div>
@@ -408,76 +404,63 @@
         </div>
     </section>
 
-    <section id="kredensial" class="py-24 relative">
+    <!-- Kredensial & Pendidikan -->
+    <section id="kredensial" class="py-24 bg-peach-bg border-y border-burgundy/10 relative">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl font-display font-bold text-peri-dark mb-4">Credentials & Education</h2>
-                <p class="text-text-muted max-w-2xl mx-auto">Validasi akademik dan deretan sertifikasi profesional berstandar global.</p>
+                <h2 class="text-4xl font-serif text-burgundy mb-4 font-bold">Credentials.</h2>
+                <p class="text-text-muted max-w-2xl mx-auto font-light">Validasi akademik dan sertifikasi teknologi jaringan berskala global.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Kolom Edukasi -->
-                <div class="luxury-card p-10 fade-in flex flex-col h-full border-t-4 border-t-peri-primary">
-                    <div class="flex items-center gap-4 mb-8 pb-4">
-                        <div class="w-12 h-12 bg-peri-primary/10 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-xl text-peri-primary"></i>
-                        </div>
-                        <h3 class="text-2xl font-display font-bold text-peri-dark">Academic Background</h3>
+                <div class="luxury-card p-8 md:p-10 fade-in flex flex-col h-full bg-white">
+                    <div class="flex items-center gap-4 mb-8 border-b border-burgundy/10 pb-4">
+                        <i class="fas fa-graduation-cap text-2xl text-burgundy"></i>
+                        <h3 class="text-2xl font-serif text-burgundy font-bold">Academic Background</h3>
                     </div>
                     
                     <div class="space-y-8">
-                        <div class="relative pl-6 border-l-2 border-peri-light/50">
-                            <div class="absolute w-3.5 h-3.5 bg-peri-primary rounded-full -left-[9px] top-1 shadow-[0_0_10px_rgba(108,99,255,0.4)]"></div>
-                            <h4 class="text-lg font-semibold text-text-main mb-1">S1 Teknik Informatika</h4>
-                            <p class="text-peri-primary text-sm font-medium mb-2">STMIK IKMI CIREBON <span class="text-text-muted/40 mx-2">|</span> 2022 - 2026</p>
-                            <p class="text-text-muted text-sm mb-2">IPK: <span class="font-bold text-peri-dark">3.46 / 4.00</span></p>
-                            <p class="text-text-muted text-xs leading-relaxed">Mata Kuliah Relevan: Basis Data, Data Mining, Statistika, Sistem Informasi Manajemen.</p>
+                        <div class="relative pl-6 border-l-2 border-peach">
+                            <div class="absolute w-4 h-4 bg-burgundy rounded-full -left-[9px] top-1 border-2 border-white"></div>
+                            <h4 class="text-lg text-text-main font-bold mb-1">S1 Teknik Informatika</h4>
+                            <p class="text-burgundy text-sm mb-2 font-semibold tracking-wider">STMIK IKMI CIREBON <span class="text-text-muted/40 mx-2">|</span> 2022 - 2026</p>
+                            <p class="text-text-muted font-light text-sm mb-2 bg-peach/30 inline-block px-3 py-1 rounded-md">IPK: <span class="text-burgundy font-bold">3.46 / 4.00</span></p>
                         </div>
                         
-                        <div class="relative pl-6 border-l-2 border-peri-light/50">
-                            <div class="absolute w-3.5 h-3.5 bg-peri-light rounded-full -left-[9px] top-1"></div>
-                            <h4 class="text-lg font-semibold text-text-main mb-1">Teknik Komputer & Jaringan</h4>
-                            <p class="text-peri-primary text-sm font-medium mb-2">SMKN 1 MUNDU CIREBON <span class="text-text-muted/40 mx-2">|</span> 2018 - 2021</p>
+                        <div class="relative pl-6 border-l-2 border-peach">
+                            <div class="absolute w-4 h-4 bg-peach-hover rounded-full -left-[9px] top-1 border-2 border-white"></div>
+                            <h4 class="text-lg text-text-main font-bold mb-1">Teknik Komputer & Jaringan</h4>
+                            <p class="text-burgundy text-sm mb-2 font-semibold tracking-wider">SMKN 1 MUNDU CIREBON <span class="text-text-muted/40 mx-2">|</span> 2018 - 2021</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Kolom Sertifikasi -->
-                <div class="luxury-card p-10 fade-in flex flex-col h-full border-t-4 border-t-peri-dark">
-                    <div class="flex items-center gap-4 mb-8 pb-4">
-                        <div class="w-12 h-12 bg-peri-dark/10 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-certificate text-xl text-peri-dark"></i>
-                        </div>
-                        <h3 class="text-2xl font-display font-bold text-peri-dark">Licenses & Certifications</h3>
+                <div class="luxury-card p-8 md:p-10 fade-in flex flex-col h-full bg-white">
+                    <div class="flex items-center gap-4 mb-8 border-b border-burgundy/10 pb-4">
+                        <i class="fas fa-certificate text-2xl text-burgundy"></i>
+                        <h3 class="text-2xl font-serif text-burgundy font-bold">Certifications</h3>
                     </div>
                     
                     <div class="space-y-6">
-                        <div class="flex items-start gap-4 group cursor-default">
-                            <i class="fas fa-shield-alt text-peri-light mt-1 group-hover:text-peri-primary transition-colors"></i>
+                        <div class="flex items-start gap-4 p-3 hover:bg-peach-bg rounded-lg transition-colors">
+                            <i class="fas fa-shield-alt text-burgundy mt-1 text-lg"></i>
                             <div>
-                                <h4 class="font-semibold text-text-main group-hover:text-peri-primary transition-colors text-sm">CyberOps Associate</h4>
-                                <p class="text-text-muted text-xs">Cisco Networking Academy &bull; Okt 2023</p>
+                                <h4 class="text-text-main font-bold text-sm">CyberOps Associate</h4>
+                                <p class="text-text-muted text-xs font-light mt-1">Cisco Networking Academy &bull; Okt 2023</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 group cursor-default">
-                            <i class="fas fa-network-wired text-peri-light mt-1 group-hover:text-peri-primary transition-colors"></i>
+                        <div class="flex items-start gap-4 p-3 hover:bg-peach-bg rounded-lg transition-colors">
+                            <i class="fas fa-network-wired text-burgundy mt-1 text-lg"></i>
                             <div>
-                                <h4 class="font-semibold text-text-main group-hover:text-peri-primary transition-colors text-sm">CCNAv7: Enterprise Networking & Security</h4>
-                                <p class="text-text-muted text-xs">Cisco Networking Academy &bull; Mei 2023</p>
+                                <h4 class="text-text-main font-bold text-sm">CCNAv7: Enterprise Networking</h4>
+                                <p class="text-text-muted text-xs font-light mt-1">Cisco Networking Academy &bull; Mei 2023</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-4 group cursor-default">
-                            <i class="fas fa-microchip text-peri-light mt-1 group-hover:text-peri-primary transition-colors"></i>
+                        <div class="flex items-start gap-4 p-3 hover:bg-peach-bg rounded-lg transition-colors">
+                            <i class="fas fa-microchip text-burgundy mt-1 text-lg"></i>
                             <div>
-                                <h4 class="font-semibold text-text-main group-hover:text-peri-primary transition-colors text-sm">Introduction to IoT & Digital Transformation</h4>
-                                <p class="text-text-muted text-xs">Cisco Networking Academy &bull; Mar 2025</p>
-                            </div>
-                        </div>
-                         <div class="flex items-start gap-4 group cursor-default">
-                            <i class="fas fa-server text-peri-light mt-1 group-hover:text-peri-primary transition-colors"></i>
-                            <div>
-                                <h4 class="font-semibold text-text-main group-hover:text-peri-primary transition-colors text-sm">IoT Fundamentals: Security & Connecting Things</h4>
-                                <p class="text-text-muted text-xs">Cisco Networking Academy &bull; Jun 2023</p>
+                                <h4 class="text-text-main font-bold text-sm">Intro to IoT & Digital Transformation</h4>
+                                <p class="text-text-muted text-xs font-light mt-1">Cisco Networking Academy &bull; Mar 2025</p>
                             </div>
                         </div>
                     </div>
@@ -487,19 +470,18 @@
     </section>
 
     <!-- Kontak -->
-    <section id="kontak" class="py-24 relative overflow-hidden flex justify-center bg-white border-t border-peri-primary/10">
-        <div class="absolute inset-0 bg-[radial-gradient(#6C63FF_1px,transparent_1px)] [background-size:16px_16px] opacity-[0.03]"></div>
+    <section id="kontak" class="py-24 relative overflow-hidden flex justify-center">
         
-        <div class="luxury-card max-w-4xl w-full mx-6 p-12 md:p-16 text-center fade-in relative z-10">
-            <h2 class="text-3xl md:text-5xl font-display font-bold text-peri-dark mb-6">Let's Work Together</h2>
-            <p class="text-text-muted mb-10 max-w-xl mx-auto">
+        <div class="luxury-card max-w-4xl w-full mx-6 p-10 md:p-16 text-center fade-in bg-white border border-burgundy/10">
+            <h2 class="text-3xl md:text-4xl font-serif text-burgundy mb-6 font-bold">Let's Connect.</h2>
+            <p class="text-text-muted font-light mb-10 max-w-xl mx-auto">
                 Tertarik untuk berkolaborasi? Saya siap membantu perusahaan Anda mengoptimalkan data operasional dan memastikan kualitas terbaik.
             </p>
-            <div class="flex flex-wrap justify-center gap-5">
-                <a href="mailto:sabrinanisakhoirunnisa@gmail.com" class="btn-indigo px-8 py-3.5 font-semibold flex items-center gap-3">
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="mailto:sabrinanisakhoirunnisa@gmail.com" class="btn-primary px-8 py-3.5 font-bold tracking-wide flex items-center gap-3 text-sm">
                     <i class="fas fa-envelope"></i> Email Saya
                 </a>
-                <a href="https://linkedin.com/in/sabrina-khoirunnisa" target="_blank" class="btn-outline-indigo px-8 py-3.5 font-semibold flex items-center gap-3">
+                <a href="https://linkedin.com/in/sabrina-khoirunnisa" target="_blank" class="btn-outline px-8 py-3.5 font-bold tracking-wide flex items-center gap-3 text-sm">
                     <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
             </div>
@@ -507,128 +489,83 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-peri-bg text-center py-8 border-t border-peri-primary/20">
-    <p class="text-peri-dark text-sm font-semibold tracking-wide">
-        &copy; 2026 Sabrina Khoirunnisa. Built with <i class="fas fa-bolt text-peri-primary mx-1"></i> Data & Code.
-    </p>
-</footer>
+    <footer class="bg-peach-bg text-center py-10 border-t border-burgundy/10">
+        <p class="text-burgundy text-sm tracking-widest uppercase font-semibold">
+            &copy; 2026 Sabrina Khoirunnisa. Crafted with <span class="text-burgundy font-serif italic text-lg lowercase ml-1">Elegance</span>.
+        </p>
+    </footer>
 
+    <!-- ================= MODALS (POP-UPS) ================= -->
 
-<!-- Modal 1: Prediksi Nilai (ML) -->
-<div id="modal-ml" class="modal-overlay" onclick="closeModalOutside(event, 'modal-ml')">
-    <div class="modal-content relative flex flex-col">
-        <div class="sticky top-0 bg-white/95 backdrop-blur-md z-10 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-            <h3 class="text-xl md:text-2xl font-display font-bold text-peri-dark">Prediksi Nilai Akhir Siswa</h3>
-            <button onclick="closeModal('modal-ml')" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 transition-colors flex justify-center items-center">
-                <i class="fas fa-times text-lg"></i>
-            </button>
-        </div>
-        <div class="px-6 py-6 md:px-8 md:py-8 overflow-y-auto">
-            <img src="https://placehold.co/800x350/F8F9FA/6C63FF?text=Ilustrasi+Laporan+Regresi" alt="Cover Laporan" class="w-full h-40 md:h-56 object-cover rounded-xl mb-6">
-            
-            <h4 class="text-lg font-bold text-peri-dark mb-2">Ringkasan Eksekutif</h4>
-            <p class="text-text-muted mb-5 leading-relaxed text-sm md:text-base">Analisis ini membangun model <em>Multiple Linear Regression</em> untuk memprediksi nilai akhir siswa (G3) berdasarkan 33 variabel awal. Setelah <em>One-Hot Encoding</em>, model dilatih dan menghasilkan R² sebesar 0,7241 dengan RMSE 2,38. Artinya, model cukup kuat dalam menjelaskan 72,41% variasi nilai G3.</p>
-            
-            <h4 class="text-lg font-bold text-peri-dark mb-2">Temuan Utama</h4>
-            <ul class="list-disc pl-5 text-text-muted mb-8 space-y-1 text-sm md:text-base">
-                <li>Nilai periode akademik sebelumnya (G2) adalah prediktor terkuat (Koefisien: 0.95).</li>
-                <li>Siswa dengan dukungan pendidikan ekstra memiliki kecenderungan nilai lebih baik.</li>
-                <li>Model terbukti efektif sebagai alat bantu <em>screening</em> awal pendidikan.</li>
-            </ul>
-            
-            <div class="bg-peri-bg p-6 rounded-xl border border-peri-light/30 text-center">
-                <p class="text-peri-dark font-medium mb-4">Tertarik melihat metodologi dan kodenya?</p>
-                <a href="Laporan_Data_Analyst_Prediksi_Nilai_Akhir_Siswa.docx" download class="inline-flex btn-indigo px-6 md:px-8 py-3 font-semibold items-center gap-3">
-                    <i class="fas fa-download"></i> Unduh Laporan (Docx)
-                </a>
+    <!-- Modal 1: Prediksi Nilai -->
+    <div class="modal-overlay" id="modal-1">
+        <div class="modal-content p-8">
+            <div class="close-modal" onclick="closeModal('modal-1')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-burgundy uppercase mb-2 block">Executive Summary</span>
+            <h2 class="text-3xl font-serif text-burgundy font-bold mb-6">Prediksi Nilai Akhir Siswa (G3)</h2>
+            <div class="space-y-4 text-text-muted font-light leading-relaxed mb-8">
+                <p>Analisis ini membangun model <strong>Multiple Linear Regression</strong> untuk memprediksi nilai akhir siswa (G3) berdasarkan karakteristik demografis, keluarga, kebiasaan belajar, dan kondisi sosial.</p>
+                <p>Dataset berisi 395 observasi dan 33 kolom. Setelah One-Hot Encoding, jumlah fitur meningkat menjadi 42 kolom. Data dibagi menjadi 80% training dan 20% testing.</p>
+                <ul class="list-disc pl-5 space-y-2 text-text-main bg-peach/20 p-4 rounded-lg">
+                    <li><strong>Performa:</strong> Model menghasilkan RMSE 2.38 poin dan R² sebesar 0.7241.</li>
+                    <li><strong>Insight:</strong> Faktor dengan koefisien absolut terbesar adalah G2 (0.957), diikuti dukungan pendidikan ekstra dan alasan memilih sekolah.</li>
+                    <li><strong>Kesimpulan:</strong> Sekitar 72.41% variasi nilai akhir berhasil dijelaskan oleh model, membuktikan nilai historis dan lingkungan memegang peran prediktif tinggi.</li>
+                </ul>
             </div>
+            <!-- Tombol Download Laporan 1 -->
+            <a href="Laporan_Data_Analyst_Prediksi_Nilai_Akhir_Siswa.docx" download class="btn-primary w-full block text-center py-4 font-bold tracking-widest text-sm rounded-xl">
+                <i class="fas fa-download mr-2"></i> UNDUH LAPORAN PENUH (.DOCX)
+            </a>
         </div>
     </div>
-</div>
 
-<!-- Modal 2: Dampak AI -->
-<div id="modal-ai" class="modal-overlay" onclick="closeModalOutside(event, 'modal-ai')">
-    <div class="modal-content relative flex flex-col">
-        <div class="sticky top-0 bg-white/95 backdrop-blur-md z-10 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-            <h3 class="text-xl md:text-2xl font-display font-bold text-peri-dark">Dampak AI pada Energi Data Center</h3>
-            <button onclick="closeModal('modal-ai')" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 transition-colors flex justify-center items-center">
-                <i class="fas fa-times text-lg"></i>
-            </button>
-        </div>
-        <div class="px-6 py-6 md:px-8 md:py-8 overflow-y-auto">
-            <img src="https://placehold.co/800x350/F8F9FA/2B2553?text=Ilustrasi+Laporan+Data+Center" alt="Cover Laporan" class="w-full h-40 md:h-56 object-cover rounded-xl mb-6">
-            
-            <h4 class="text-lg font-bold text-peri-dark mb-2">Ringkasan Eksekutif</h4>
-            <p class="text-text-muted mb-5 leading-relaxed text-sm md:text-base">Mengkaji perkembangan konsumsi listrik segmen IT/Data Center dari IEA (2020-2035). Konsumsi melonjak dari 176 TWh ke 295 TWh (2024), dengan skenario puncak menembus 985 TWh pada 2035 akibat dominasi <em>workload</em> AI.</p>
-            
-            <h4 class="text-lg font-bold text-peri-dark mb-2">Temuan Utama</h4>
-            <ul class="list-disc pl-5 text-text-muted mb-8 space-y-1 text-sm md:text-base">
-                <li>Kapasitas terpasang tumbuh masif mencapai 174 GW di tahun 2030.</li>
-                <li>PUE (Efisiensi) membaik menjadi 1.21, namun tidak cukup menahan laju konsumsi absolut.</li>
-                <li>Kontribusi IT terhadap listrik total membengkak menjadi 82.6%.</li>
-            </ul>
-            
-            <div class="bg-peri-bg p-6 rounded-xl border border-peri-light/30 text-center">
-                <p class="text-peri-dark font-medium mb-4">Ingin membaca rincian skenario kapasitas energi?</p>
-                <a href="Laporan_Data_Analyst_Dampak_AI_Terhadap_Konsumsi_Energi_v2.docx" download class="inline-flex btn-indigo px-6 md:px-8 py-3 font-semibold items-center gap-3">
-                    <i class="fas fa-download"></i> Unduh Laporan (Docx)
-                </a>
+    <!-- Modal 2: Data Center -->
+    <div class="modal-overlay" id="modal-2">
+        <div class="modal-content p-8">
+            <div class="close-modal" onclick="closeModal('modal-2')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-burgundy uppercase mb-2 block">Executive Summary</span>
+            <h2 class="text-3xl font-serif text-burgundy font-bold mb-6">Dampak AI Terhadap Konsumsi Energi</h2>
+            <div class="space-y-4 text-text-muted font-light leading-relaxed mb-8">
+                <p>Analisis tren 2020–2035 berdasarkan data IEA Energy and AI, berfokus pada infrastruktur Data Center dan efisiensi kelistrikan.</p>
+                <ul class="list-disc pl-5 space-y-2 text-text-main bg-peach/20 p-4 rounded-lg">
+                    <li><strong>Pertumbuhan IT:</strong> Konsumsi listrik naik dari 176 TWh (2020) menjadi 295 TWh (2024), dan diproyeksikan 733 TWh pada 2030 (naik 148.5%).</li>
+                    <li><strong>Infrastruktur:</strong> Kapasitas terpasang naik dari 97 GW ke 226 GW pada 2030.</li>
+                    <li><strong>Efisiensi vs Skala:</strong> PUE membaik dari 1.41 ke 1.29. Efisiensi membaik, namun tidak cukup menahan pertumbuhan absolut akibat skala komputasi AI.</li>
+                </ul>
+                <p><strong>Implikasi Bisnis:</strong> Perencanaan skenario kapasitas dan ketersediaan energi harus diprioritaskan sebelum melakukan ekspansi masif Data Center.</p>
             </div>
+            <!-- Tombol Download Laporan 2 -->
+            <a href="Laporan_Data_Analyst_Dampak_AI_Terhadap_Konsumsi_Energi.docx" download class="btn-primary w-full block text-center py-4 font-bold tracking-widest text-sm rounded-xl">
+                <i class="fas fa-download mr-2"></i> UNDUH LAPORAN PENUH (.DOCX)
+            </a>
         </div>
     </div>
-</div>
 
-<!-- Modal 3: IEA Global -->
-<div id="modal-iea" class="modal-overlay" onclick="closeModalOutside(event, 'modal-iea')">
-    <div class="modal-content relative flex flex-col">
-        <div class="sticky top-0 bg-white/95 backdrop-blur-md z-10 px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-            <h3 class="text-xl md:text-2xl font-display font-bold text-peri-dark">Pengeluaran Energi Rumah Tangga</h3>
-            <button onclick="closeModal('modal-iea')" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 transition-colors flex justify-center items-center">
-                <i class="fas fa-times text-lg"></i>
-            </button>
-        </div>
-        <div class="px-6 py-6 md:px-8 md:py-8 overflow-y-auto">
-            <img src="https://placehold.co/800x350/F8F9FA/6C63FF?text=Ilustrasi+Peta+Global" alt="Cover Laporan" class="w-full h-40 md:h-56 object-cover rounded-xl mb-6">
-            
-            <h4 class="text-lg font-bold text-peri-dark mb-2">Ringkasan Eksekutif</h4>
-            <p class="text-text-muted mb-5 leading-relaxed text-sm md:text-base">Menganalisis dataset dari 100+ negara untuk memetakan beban finansial energi di sektor rumah tangga. Menemukan adanya "Paradoks Keterjangkauan" dimana negara berkembang memiliki beban biaya utilitas lebih berat dibandingkan pemasukannya.</p>
-            
-            <h4 class="text-lg font-bold text-peri-dark mb-2">Temuan Utama</h4>
-            <ul class="list-disc pl-5 text-text-muted mb-8 space-y-1 text-sm md:text-base">
-                <li>Rasio biaya energi terhadap pendapatan jauh lebih regresif di negara berkembang (mencapai batas kemiskinan energi &gt;10%).</li>
-                <li>Suhu dan garis lintang mendikte pengeluaran pemanas ruangan vs memasak.</li>
-                <li>Mampu memetakan fase historis transisi energi (biomassa → LPG → elektrifikasi).</li>
-            </ul>
-            
-            <div class="bg-peri-bg p-6 rounded-xl border border-peri-light/30 text-center">
-                <p class="text-peri-dark font-medium mb-4">Lihat analisis makroekonomi lengkapnya.</p>
-                <a href="Analisis_Data_Pengeluaran_Energi_Rumah_Tangga.docx" download class="inline-flex btn-indigo px-6 md:px-8 py-3 font-semibold items-center gap-3">
-                    <i class="fas fa-download"></i> Unduh Laporan (Docx)
-                </a>
+    <!-- Modal 3: Laporan IEA Global (v2) -->
+    <div class="modal-overlay" id="modal-3">
+        <div class="modal-content p-8">
+            <div class="close-modal" onclick="closeModal('modal-3')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-burgundy uppercase mb-2 block">Executive Summary</span>
+            <h2 class="text-3xl font-serif text-burgundy font-bold mb-6">Analisis Tren, Infrastruktur & Listrik</h2>
+            <div class="space-y-4 text-text-muted font-light leading-relaxed mb-8">
+                <p>Mengkaji perkembangan konsumsi listrik terkait segmen IT menggunakan dataset <em>World Data</em> yang diproses dengan Google Colab (Pandas).</p>
+                <p>Porsi IT terhadap total konsumsi listrik diproyeksikan melonjak dari 65.4% (2020) menjadi 82.6% (2035), menjadikannya komponen paling dominan.</p>
+                <ul class="list-disc pl-5 space-y-2 text-text-main bg-peach/20 p-4 rounded-lg">
+                    <li><strong>Data Preprocessing:</strong> Pembersihan <em>missing values</em> berlapis, melting format <em>wide</em> ke <em>long</em>.</li>
+                    <li><strong>Eksplorasi (EDA):</strong> Visualisasi menunjukkan fase 2024–2030 sebagai fase pertumbuhan paling radikal.</li>
+                    <li><strong>Rekomendasi Analitik:</strong> Memisahkan metrik beban AI murni dari beban IT umum (Server/Storage biasa) untuk KPI di masa depan.</li>
+                </ul>
             </div>
+            <!-- Tombol Download Laporan 3 -->
+            <a href="Laporan_Data_Analyst_Dampak_AI_Terhadap_Konsumsi_Energi_v2.docx" download class="btn-primary w-full block text-center py-4 font-bold tracking-widest text-sm rounded-xl">
+                <i class="fas fa-download mr-2"></i> UNDUH LAPORAN PENUH (.DOCX)
+            </a>
         </div>
     </div>
-</div>
 
-<script>
-    function openModal(modalId) {
-        document.getElementById(modalId).classList.add('active');
-        document.body.classList.add('modal-open'); // Mencegah background scroll
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).classList.remove('active');
-        document.body.classList.remove('modal-open'); // Mengembalikan background scroll
-    }
-
-    function closeModalOutside(event, modalId) {
-        // Jika user mengklik area gelap di luar kotak konten modal
-        if (event.target.id === modalId) {
-            closeModal(modalId);
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
+    <script>
+        // Animasi Scroll (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -641,6 +578,24 @@
             const fadeElements = document.querySelectorAll('.fade-in');
             fadeElements.forEach(el => observer.observe(el));
         });
+
+        // Logika Buka Tutup Pop-Up (Modal)
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden'; // Mencegah background ikut ke-scroll
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = 'auto'; // Mengembalikan scroll
+        }
+        
+        // Menutup modal jika klik di luar kotak putih
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>
