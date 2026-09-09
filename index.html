@@ -6,7 +6,7 @@
     <title>Sabrina Khoirunnisa | Data Analyst</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- Font Anton untuk Judul Raksasa (mirip referensi), Inter untuk teks body -->
+    <!-- Font Anton untuk Judul Raksasa, Inter untuk teks body -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
@@ -48,12 +48,11 @@
             position: absolute;
             right: 5%;
             bottom: 0;
-            height: 80%; /* Lebih tinggi dari container agar overlap */
+            height: 120%;
             object-fit: contain;
             object-position: bottom;
             z-index: 10;
             pointer-events: none;
-            /* Filter untuk menyatukan tone warna foto dengan background gelap */
             filter: grayscale(20%) contrast(1.1); 
         }
 
@@ -90,6 +89,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .btn-light {
@@ -109,6 +109,13 @@
             border-color: #f5f5f5;
         }
 
+        /* Filter Tab Active State */
+        .filter-btn.active {
+            background-color: #f5f5f5;
+            color: #141416;
+            border-color: #f5f5f5;
+        }
+
         /* Garis pemisah tipis */
         .divider {
             height: 1px;
@@ -119,8 +126,8 @@
         /* Modals (Disesuaikan gayanya) */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
             display: flex; justify-content: center; align-items: center;
             opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 100;
         }
@@ -128,8 +135,8 @@
         
         .modal-content {
             background-color: #1c1e22;
-            width: 90%; max-width: 700px; max-height: 85vh;
-            border-radius: 16px; overflow-y: auto;
+            width: 90%; max-width: 750px; max-height: 85vh;
+            border-radius: 20px; overflow-y: auto;
             transform: translateY(20px); transition: all 0.4s ease;
             position: relative;
             border: 1px solid #2a2c30;
@@ -143,12 +150,19 @@
             cursor: pointer; transition: all 0.2s ease; z-index: 10;
         }
         .close-modal:hover { background: #f5f5f5; color: #141416; }
+
+        /* Animation for filtering cards */
+        .project-item {
+            transition: all 0.4s ease;
+        }
+        .project-item.hidden-card {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black">
 
-    <!-- Navigasi -->
-    <nav class="w-full py-6 px-8 flex justify-between items-center border-b border-[#2a2c30]">
+    <nav class="w-full py-6 px-8 flex justify-between items-center border-b border-[#2a2c30] sticky top-0 bg-[#141416]/90 backdrop-blur-md z-50">
         <div class="text-xl font-bold tracking-widest font-headline">SK.</div>
         
         <div class="hidden md:flex space-x-8 text-xs font-semibold tracking-widest text-muted uppercase">
@@ -163,13 +177,12 @@
         </a>
     </nav>
 
-    <!-- HERO SECTION (Meniru Referensi) -->
     <section class="relative pt-12 md:pt-20 px-6 max-w-[1400px] mx-auto min-h-[85vh] flex flex-col justify-center">
         
         <!-- Teks Kiri -->
         <div class="relative z-20 w-full md:w-3/5">
-            <p class="text-muted text-sm font-semibold tracking-[0.2em] uppercase mb-4">
-                Data Decisions That Inspire
+            <p class="text-muted text-sm font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Data Decisions That Inspire
             </p>
             
             <h1 class="text-huge text-[4rem] md:text-[8rem] lg:text-[10rem] text-primary mb-6">
@@ -191,9 +204,8 @@
             </div>
         </div>
 
-        <!-- Foto Kanan (Gunakan foto tanpa background / PNG transparan jika ada) -->
-        <!-- Gunakan placeholder portrait dulu -->
-        <img src="Sabrina_-preview.png" alt="Sabrina" class="hero-image hidden md:block">
+        <!-- Foto Kanan -->
+        <img src="https://placehold.co/600x900/1c1e22/f5f5f5?text=Foto+Potret+Tanpa+Background" alt="Sabrina Khoirunnisa" class="hero-image hidden md:block">
 
         <!-- Info Badge Kanan Tengah -->
         <div class="absolute right-10 top-1/2 -translate-y-1/2 text-right hidden lg:block z-20">
@@ -205,7 +217,6 @@
         </div>
     </section>
 
-    <!-- STATISTIK HORIZONTAL -->
     <section class="max-w-[1400px] mx-auto px-6 mb-24">
         <div class="surface-card p-8 flex flex-wrap justify-between items-center text-center gap-8 md:gap-0">
             <div class="flex-1 border-r border-[#2a2c30] last:border-0">
@@ -214,8 +225,8 @@
                 <p class="text-xs text-muted uppercase tracking-widest font-semibold">Academic GPA</p>
             </div>
             <div class="flex-1 border-r border-[#2a2c30] last:border-0">
-                <i class="fas fa-project-diagram text-xl text-muted mb-3"></i>
-                <h3 class="text-4xl font-light mb-1">4+</h3>
+                <i class="fas fa-folder-open text-xl text-muted mb-3"></i>
+                <h3 class="text-4xl font-light mb-1" id="project-count">7+</h3>
                 <p class="text-xs text-muted uppercase tracking-widest font-semibold">Data Projects</p>
             </div>
             <div class="flex-1 border-r border-[#2a2c30] last:border-0">
@@ -231,70 +242,202 @@
         </div>
     </section>
 
-    <!-- FEATURED WORK (Kartu Portrait) -->
     <section id="proyek" class="max-w-[1400px] mx-auto px-6 mb-24">
-        <div class="flex justify-between items-end mb-8">
-            <h2 class="text-sm font-semibold tracking-widest uppercase text-muted">Featured Work</h2>
-            <p class="text-xs font-semibold tracking-widest uppercase flex items-center gap-2 cursor-pointer hover:text-white text-muted">
-                Explore Reports <i class="fas fa-arrow-right"></i>
-            </p>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div>
+                <h2 class="text-sm font-semibold tracking-widest uppercase text-muted mb-2">Featured Work</h2>
+                <h3 class="text-3xl font-light tracking-tight">Case Studies & Projects</h3>
+            </div>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap gap-2">
+                <button onclick="filterProjects('all')" class="filter-btn active px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-[#4a4d52] transition-all">All Projects</button>
+                <button onclick="filterProjects('ml')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-[#4a4d52] text-muted hover:text-white transition-all">Machine Learning</button>
+                <button onclick="filterProjects('analytics')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-[#4a4d52] text-muted hover:text-white transition-all">Data Analytics</button>
+                <button onclick="filterProjects('cyber')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase border border-[#4a4d52] text-muted hover:text-white transition-all">Cybersecurity</button>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+            
             <!-- Project 1 -->
-            <div class="surface-card p-6 h-[450px] flex flex-col group cursor-pointer" onclick="openModal('modal-1')">
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="ml" onclick="openModal('modal-1')">
                 <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
-                     <img src="https://placehold.co/600x400/141416/4a4d52?text=ML+Regression" alt="Project" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=ML+Regression" alt="Project 1" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-emerald-400">ML Model</span>
+                     </div>
                      <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                         <span class="text-xs font-bold tracking-widest uppercase">View Details</span>
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
                      </div>
                 </div>
-                <div class="flex-1 flex flex-col justify-end">
-                    <h3 class="text-2xl font-light leading-tight mb-3">Predictive Student Performance</h3>
-                    <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Machine Learning • Regression</p>
-                    <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center self-end group-hover:bg-primary group-hover:text-bg transition-colors">
-                        <i class="fas fa-arrow-right -rotate-45"></i>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">Predictive Student Performance</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Machine Learning • Regression</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">Scikit-Learn / Python</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Project 2 -->
-            <div class="surface-card p-6 h-[450px] flex flex-col group cursor-pointer" onclick="openModal('modal-2')">
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="analytics" onclick="openModal('modal-2')">
                 <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
-                     <img src="https://placehold.co/600x400/141416/4a4d52?text=Energy+Analysis" alt="Project" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=Energy+Analysis" alt="Project 2" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-cyan-400">Data Analytics</span>
+                     </div>
                      <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                         <span class="text-xs font-bold tracking-widest uppercase">View Details</span>
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
                      </div>
                 </div>
-                <div class="flex-1 flex flex-col justify-end">
-                    <h3 class="text-2xl font-light leading-tight mb-3">AI & Data Center Energy Impact</h3>
-                    <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Data Analysis • IEA Data</p>
-                    <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center self-end group-hover:bg-primary group-hover:text-bg transition-colors">
-                        <i class="fas fa-arrow-right -rotate-45"></i>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">AI & Data Center Energy Impact</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Data Analysis • IEA Data</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">Pandas / Seaborn</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Project 3 -->
-            <div class="surface-card p-6 h-[450px] flex flex-col group cursor-pointer" onclick="openModal('modal-3')">
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="analytics" onclick="openModal('modal-3')">
                 <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
-                     <img src="https://placehold.co/600x400/141416/4a4d52?text=Global+Energy" alt="Project" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=Global+Energy" alt="Project 3" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-cyan-400">Macroeconomics</span>
+                     </div>
                      <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                         <span class="text-xs font-bold tracking-widest uppercase">View Details</span>
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
                      </div>
                 </div>
-                <div class="flex-1 flex flex-col justify-end">
-                    <h3 class="text-2xl font-light leading-tight mb-3">Global Energy Macro Analysis</h3>
-                    <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Macroeconomics • Pandas</p>
-                    <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center self-end group-hover:bg-primary group-hover:text-bg transition-colors">
-                        <i class="fas fa-arrow-right -rotate-45"></i>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">Global Energy Macro Analysis</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Macroeconomics • Pandas</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">Google Colab / ETL</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Project 4 (Oil Deliveries Analysis) -->
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="analytics" onclick="openModal('modal-oil')">
+                <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=OECD+Oil+Deliveries" alt="Oil Deliveries Analysis" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-cyan-400">Time Series Analysis</span>
+                     </div>
+                     <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
+                     </div>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">Global Oil Deliveries & Volatility</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Time Series • Correlation & Volatility</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">OECD Data / Python / Colab</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="analytics" onclick="openModal('modal-4')">
+                <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=Customer+Churn" alt="Project 4" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-amber-400">BI Dashboard</span>
+                     </div>
+                     <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
+                     </div>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">Customer Churn & Retention Analytics</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Business Intelligence • Churn Analysis</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">SQL / Power BI / Excel</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 (New) -->
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="ml" onclick="openModal('modal-5')">
+                <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=E-Commerce+Forecast" alt="Project 5" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-emerald-400">Time Series</span>
+                     </div>
+                     <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
+                     </div>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">E-Commerce Sales Forecasting</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Predictive Analytics • Supply Chain</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">Prophet / Python</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 (New) -->
+            <div class="surface-card p-6 h-[460px] flex flex-col group cursor-pointer project-item" data-category="cyber" onclick="openModal('modal-6')">
+                <div class="w-full h-48 bg-[#141416] rounded-lg mb-6 overflow-hidden relative">
+                     <img src="https://placehold.co/600x400/141416/4a4d52?text=CyberOps+Log+Analysis" alt="Project 6" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                     <div class="absolute top-3 left-3 bg-[#1c1e22]/80 backdrop-blur px-3 py-1 rounded-full border border-[#2a2c30]">
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-purple-400">CyberOps</span>
+                     </div>
+                     <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                         <span class="text-xs font-bold tracking-widest uppercase bg-white text-black px-4 py-2 rounded-full">View Details</span>
+                     </div>
+                </div>
+                <div class="flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-light leading-tight mb-2 group-hover:text-white transition-colors">Network Threat & Anomaly Log Analysis</h3>
+                        <p class="text-xs text-muted uppercase tracking-widest font-semibold mb-4">Cybersecurity • Log Mining</p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-muted border border-[#2a2c30] px-2.5 py-1 rounded-md">Cisco / Security Analytics</span>
+                        <div class="w-10 h-10 rounded-full border border-[#4a4d52] flex items-center justify-center group-hover:bg-primary group-hover:text-bg transition-colors">
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- KEMAMPUAN & TOOLS (Mirip Bawah Referensi) -->
     <section id="keahlian" class="max-w-[1400px] mx-auto px-6 mb-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
         
         <!-- Core Capabilities -->
@@ -332,7 +475,6 @@
             </div>
         </div>
 
-        <!-- Tools & Certs -->
         <div>
             <h2 class="text-sm font-semibold tracking-widest uppercase text-muted mb-8">Tools & Technologies</h2>
             <div class="surface-card p-6 mb-8 grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -369,10 +511,8 @@
         </div>
     </section>
 
-    <!-- FOOTER / LET'S TALK -->
     <section id="kontak" class="max-w-[1400px] mx-auto px-6 mb-12">
         <div class="surface-card p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden">
-            <!-- Cahaya gradient halus seperti di referensi -->
             <div class="absolute left-0 bottom-0 w-1/2 h-full bg-gradient-to-r from-white/10 to-transparent opacity-50 blur-2xl pointer-events-none"></div>
             
             <div class="z-10">
@@ -402,21 +542,21 @@
         </div>
     </section>
 
-    <!-- ================= MODALS ================= -->
 
     <!-- Modal 1 -->
     <div class="modal-overlay" id="modal-1">
-        <div class="modal-content p-10">
+        <div class="modal-content p-8 md:p-10">
             <div class="close-modal" onclick="closeModal('modal-1')"><i class="fas fa-times"></i></div>
-            <span class="text-xs font-bold tracking-widest text-muted uppercase mb-3 block">Executive Summary</span>
+            <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase mb-2 block">Machine Learning Project</span>
             <h2 class="text-3xl font-light mb-6 leading-tight">Prediksi Nilai Akhir Siswa (G3)</h2>
             <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
                 <p>Analisis ini membangun model <strong>Multiple Linear Regression</strong> untuk memprediksi nilai akhir siswa (G3) berdasarkan karakteristik demografis, keluarga, kebiasaan belajar, dan kondisi sosial.</p>
-                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary">
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
                     <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Performa:</strong> Model menghasilkan RMSE 2.38 poin dan R² sebesar 0.7241.</li>
-                        <li><strong>Insight:</strong> Faktor dengan koefisien absolut terbesar adalah G2 (0.957).</li>
-                        <li><strong>Kesimpulan:</strong> 72.41% variasi nilai akhir berhasil dijelaskan oleh model.</li>
+                        <li><strong>Performa Model:</strong> Menghasilkan RMSE 2.38 poin dan nilai R² sebesar 0.7241.</li>
+                        <li><strong>Insight Utama:</strong> Prediktor dengan korelasi terkuat adalah nilai periode sebelumnya (G2) dengan koefisien 0.957.</li>
+                        <li><strong>Kesimpulan:</strong> 72.41% variasi nilai akhir siswa berhasil dijelaskan secara konsisten oleh model.</li>
                     </ul>
                 </div>
             </div>
@@ -428,13 +568,14 @@
 
     <!-- Modal 2 -->
     <div class="modal-overlay" id="modal-2">
-        <div class="modal-content p-10">
+        <div class="modal-content p-8 md:p-10">
             <div class="close-modal" onclick="closeModal('modal-2')"><i class="fas fa-times"></i></div>
-            <span class="text-xs font-bold tracking-widest text-muted uppercase mb-3 block">Executive Summary</span>
+            <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-2 block">Data Analytics Project</span>
             <h2 class="text-3xl font-light mb-6 leading-tight">Dampak AI Terhadap Konsumsi Energi</h2>
             <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
                 <p>Analisis tren 2020–2035 berdasarkan data IEA Energy and AI, berfokus pada infrastruktur Data Center dan efisiensi kelistrikan.</p>
-                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary">
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
                     <ul class="list-disc pl-5 space-y-2">
                         <li><strong>Pertumbuhan IT:</strong> Konsumsi listrik naik dari 176 TWh (2020) menjadi 295 TWh (2024), proyeksi 733 TWh (2030).</li>
                         <li><strong>Infrastruktur:</strong> Kapasitas terpasang naik ke 226 GW pada 2030.</li>
@@ -450,15 +591,16 @@
 
     <!-- Modal 3 -->
     <div class="modal-overlay" id="modal-3">
-        <div class="modal-content p-10">
+        <div class="modal-content p-8 md:p-10">
             <div class="close-modal" onclick="closeModal('modal-3')"><i class="fas fa-times"></i></div>
-            <span class="text-xs font-bold tracking-widest text-muted uppercase mb-3 block">Executive Summary</span>
+            <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-2 block">Macroeconomics Analysis</span>
             <h2 class="text-3xl font-light mb-6 leading-tight">Analisis Tren Energi Global IEA</h2>
             <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
                 <p>Mengkaji perkembangan konsumsi listrik terkait segmen IT menggunakan dataset <em>World Data</em> yang diproses dengan Google Colab (Pandas).</p>
-                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary">
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
                     <ul class="list-disc pl-5 space-y-2">
-                        <li><strong>Data Preprocessing:</strong> Pembersihan missing values berlapis, melting format wide ke long.</li>
+                        <li><strong>Data Preprocessing:</strong> Pembersihan missing values berlapis dan melting format wide ke long.</li>
                         <li><strong>Eksplorasi (EDA):</strong> Visualisasi menunjukkan fase 2024–2030 sebagai fase pertumbuhan paling radikal.</li>
                     </ul>
                 </div>
@@ -469,19 +611,147 @@
         </div>
     </div>
 
+    <!-- Modal Oil Deliveries -->
+    <div class="modal-overlay" id="modal-oil">
+        <div class="modal-content p-8 md:p-10">
+            <div class="close-modal" onclick="closeModal('modal-oil')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase mb-2 block">OECD Time Series Project</span>
+            <h2 class="text-3xl font-light mb-6 leading-tight">Analisis Fluktuasi, Korelasi & Volatilitas Produk Minyak</h2>
+            <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
+                <p>Analisis eksplorasi time-series pada data <strong>OECD Oil Deliveries</strong> (April 2023 – April 2026, 37 observasi bulanan) menggunakan Python/Google Colab untuk mengevaluasi tingkat konsumsi, volatilitas, korelasi antarkelompok produk, dan pergerakan tren musiman.</p>
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Level Deliveries Tertinggi:</strong> Gas Diesel (Mean: 50.53 TMT) & Motor Gasoline (Mean: 49.43 TMT) mendominasi volume pengiriman bulanan.</li>
+                        <li><strong>Volatilitas Pasar:</strong> Motor Gasoline memiliki fluktuasi tertinggi (Std Dev 2.10, Volatilitas 2.127), sedangkan Residual Fuel Oil sangat stabil (Std Dev 0.03, Volatilitas 0.164).</li>
+                        <li><strong>Korelasi Produk:</strong> Hubungan positif sangat kuat antara Aviation Fuels & Motor Gasoline (r = 0.839), serta Gas Diesel & Motor Gasoline (r = 0.666).</li>
+                        <li><strong>Integritas Data:</strong> Menggunakan frekuensi asli bulanan (148 observasi produk-bulan) tanpa forward-fill sintetis untuk menjaga akurasi pemodelan time-series.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="Laporan_Analisis_Data_Oil_Deliveries_Final.docx" download class="btn-pill btn-light w-full gap-2">
+                Unduh Laporan Lengkap (.DOCX) <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal 4 (New) -->
+    <div class="modal-overlay" id="modal-4">
+        <div class="modal-content p-8 md:p-10">
+            <div class="close-modal" onclick="closeModal('modal-4')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-amber-400 uppercase mb-2 block">Business Intelligence</span>
+            <h2 class="text-3xl font-light mb-6 leading-tight">Customer Churn & Retention Analytics</h2>
+            <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
+                <p>Analisis kohort dan retensi pelanggan e-commerce untuk mengidentifikasi pemicu utama rasio churn pengguna aktif serta merumuskan strategi pencegahan retensi.</p>
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Rasio Churn:</strong> Terjadi penurunan 18% dalam 30 hari pertama pada segmen pelanggan tanpa promo loyalty.</li>
+                        <li><strong>Faktor Utama:</strong> Waktu pengiriman yang melebihi 4 hari meningkatkan risiko churn sebesar 2.4x.</li>
+                        <li><strong>Rekomendasi:</strong> Optimalisasi rute pengiriman logistik dapat meningkatkan retensi pelanggan hingga +12%.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" onclick="alert('Silakan ganti link ini dengan file laporan Anda'); return false;" class="btn-pill btn-light w-full gap-2">
+                Unduh Laporan / Dokumentasi <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal 5 (New) -->
+    <div class="modal-overlay" id="modal-5">
+        <div class="modal-content p-8 md:p-10">
+            <div class="close-modal" onclick="closeModal('modal-5')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase mb-2 block">Predictive Analytics</span>
+            <h2 class="text-3xl font-light mb-6 leading-tight">E-Commerce Sales & Demand Forecasting</h2>
+            <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
+                <p>Model peramalan deret waktu (Time-Series Forecasting) menggunakan Facebook Prophet dan Python untuk memprediksi volume penjualan bulanan dan stok pasokan.</p>
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Akurasi Model:</strong> Mencapai MAPE (Mean Absolute Percentage Error) sebesar 6.8% pada uji data 6 bulan.</li>
+                        <li><strong>Puncak Musiman:</strong> Deteksi lonjakan permintaan hingga +45% pada kuartal akhir (Q4).</li>
+                        <li><strong>Dampak Bisnis:</strong> Mengurangi potensi kerugian *overstock* persediaan barang hingga 15%.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" onclick="alert('Silakan ganti link ini dengan file laporan Anda'); return false;" class="btn-pill btn-light w-full gap-2">
+                Unduh Laporan / Dokumentasi <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal 6 (New) -->
+    <div class="modal-overlay" id="modal-6">
+        <div class="modal-content p-8 md:p-10">
+            <div class="close-modal" onclick="closeModal('modal-6')"><i class="fas fa-times"></i></div>
+            <span class="text-xs font-bold tracking-widest text-purple-400 uppercase mb-2 block">Cybersecurity Analytics</span>
+            <h2 class="text-3xl font-light mb-6 leading-tight">Network Threat & Anomaly Log Analysis</h2>
+            <div class="space-y-4 text-muted text-sm leading-relaxed mb-8">
+                <p>Mengintegrasikan pemahaman Cisco CyberOps dengan analisis data log jaringan untuk mengidentifikasi anomali lalu lintas data dan potensi serangan siber (DDoS / Brute Force).</p>
+                <div class="bg-[#141416] border border-[#2a2c30] p-5 rounded-xl text-primary space-y-2">
+                    <p class="text-xs text-muted font-bold tracking-wider uppercase mb-2">Key Findings & Metrics</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Deteksi Anomali:</strong> Mengisolasi pola lonjakan request abnormal dari alamat IP mencurigakan.</li>
+                        <li><strong>Kecepatan Respon:</strong> Memangkas waktu identifikasi insiden siber hingga 35%.</li>
+                        <li><strong>Integrasi Tools:</strong> Pengolahan data log jaringan mentah menjadi dasbor statistik keamanan.</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" onclick="alert('Silakan ganti link ini dengan file laporan Anda'); return false;" class="btn-pill btn-light w-full gap-2">
+                Unduh Laporan / Dokumentasi <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+
     <script>
         function openModal(id) {
-            document.getElementById(id).classList.add('active');
-            document.body.style.overflow = 'hidden'; 
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; 
+            }
         }
+
         function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-            document.body.style.overflow = 'auto'; 
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; 
+            }
         }
+
         window.onclick = function(event) {
             if (event.target.classList.contains('modal-overlay')) {
                 event.target.classList.remove('active');
                 document.body.style.overflow = 'auto';
+            }
+        }
+
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Activate clicked button
+            event.currentTarget.classList.add('active');
+
+            const items = document.querySelectorAll('.project-item');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                if (category === 'all' || itemCategory === category) {
+                    item.classList.remove('hidden-card');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden-card');
+                }
+            });
+
+            // Update visible project count dynamically
+            const projectCountEl = document.getElementById('project-count');
+            if (projectCountEl) {
+                projectCountEl.innerText = visibleCount + "+";
             }
         }
     </script>
